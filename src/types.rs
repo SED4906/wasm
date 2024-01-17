@@ -39,6 +39,7 @@ pub type ElemIndex = u32;
 pub type DataIndex = u32;
 pub type LocalIndex = u32;
 pub type LabelIndex = u32;
+pub type LaneIndex = u8;
 
 pub enum RefType {
     FuncRef,
