@@ -8,6 +8,7 @@ pub enum Instruction {
     Loop(BlockType, Vec<Instruction>),
     If(BlockType, Vec<Instruction>),
     IfElse(BlockType, Vec<Instruction>, Vec<Instruction>),
+    End,
     Branch(LabelIndex),
     BranchIf(LabelIndex),
     BranchTable(Vec<LabelIndex>, LabelIndex),
@@ -56,12 +57,20 @@ pub enum Instruction {
     I64Store8(u32, u32),
     I64Store16(u32, u32),
     I64Store32(u32, u32),
-    MemorySize,
-    MemoryGrow,
-    MemoryInit(DataIndex),
+    MemorySize, // followed by 0x00
+    MemoryGrow, // followed by 0x00
+    I32TruncateSaturatingF32S,
+    I32TruncateSaturatingF32U,
+    I32TruncateSaturatingF64S,
+    I32TruncateSaturatingF64U,
+    I64TruncateSaturatingF32S,
+    I64TruncateSaturatingF32U,
+    I64TruncateSaturatingF64S,
+    I64TruncateSaturatingF64U,
+    MemoryInit(DataIndex), // followed by 0x00
     DataDrop(DataIndex),
-    MemoryCopy,
-    MemoryFill,
+    MemoryCopy, // followed by 0x0000
+    MemoryFill, // followed by 0x00
     I32Const(u32),
     I64Const(u64),
     F32Const(f32),

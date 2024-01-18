@@ -1,12 +1,12 @@
 use num_enum::{IntoPrimitive, TryFromPrimitive, TryFromPrimitiveError};
 
 #[derive(IntoPrimitive, TryFromPrimitive)]
-#[repr(i64)]
+#[repr(u8)]
 pub enum ValueType {
-    Empty = -64,
-    ExternRef = -17,
+    Empty = 0x40,
+    ExternRef = 0x6F,
     FuncRef,
-    V128 = -5,
+    V128 = 0x7B,
     F64,
     F32,
     I64,
@@ -21,7 +21,7 @@ pub enum BlockType {
 impl TryFrom<i64> for BlockType {
     fn try_from(value: i64) -> Result<Self, Self::Error> {
         if value < 0 {
-            Ok(BlockType::Value(value.try_into()?))
+            Ok(BlockType::Value((value as u8 & 0x7F).try_into()?))
         } else {
             Ok(BlockType::Index(value.try_into().unwrap()))
         }
@@ -41,7 +41,9 @@ pub type LocalIndex = u32;
 pub type LabelIndex = u32;
 pub type LaneIndex = u8;
 
+#[derive(IntoPrimitive, TryFromPrimitive)]
+#[repr(u8)]
 pub enum RefType {
+    ExternRef = 0x6F,
     FuncRef,
-    ExternRef,
 }
