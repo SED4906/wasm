@@ -8,12 +8,11 @@ pub mod stack;
 pub mod types;
 pub mod instruction;
 
-struct Executor {
-    bytecode: Vec<u8>,
+struct Executor<'a> {
+    bytecode: &'a [u8],
     position: usize,
     stack: Stack,
 }
 
-impl Executor {
-
+impl Executor<'_> {
 }
