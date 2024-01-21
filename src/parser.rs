@@ -33,7 +33,6 @@ pub fn parse_instruction1(input: &[u8]) -> IResult<&[u8], Instruction> {
             let (input, label) = parse_leb128u32(input)?;
             Ok((input, Instruction::BranchTable(table,label as LabelIndex)))
         }
-        FullOpcode::OneByte(Opcode::Return) => Ok((input,Instruction::Return)),
         FullOpcode::OneByte(Opcode::Call) => {
             let (input, func) = parse_leb128u32(input)?;
             Ok((input, Instruction::Call(func as FuncIndex)))
