@@ -8,5 +8,4 @@ edition = "2021"
 [dependencies]
 zerocopy = {version = "0.7", features = ["alloc", "byteorder"]}
 zerocopy-derive = "0.7"
-nom = {version = "7", default-features = false, features = ["alloc"]}
 num_enum = "0.7"

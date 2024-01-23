@@ -1,12 +1,5 @@
 use num_enum::{IntoPrimitive, TryFromPrimitive};
 
-#[derive(PartialEq)]
-pub enum FullOpcode {
-    OneByte(Opcode),
-    Extended1(ExtendedOpcode1),
-    Extended2(ExtendedOpcode2),
-}
-
 #[derive(PartialEq, IntoPrimitive, TryFromPrimitive)]
 #[repr(u8)]
 pub enum Opcode {
